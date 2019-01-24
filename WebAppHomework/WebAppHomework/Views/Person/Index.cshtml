@@ -1,0 +1,28 @@
+﻿@model WebAppHomework.Models.PersonModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        @foreach(var detail in Model.Details)
+        {
+        <div style="padding: 1em">
+            <p>Person Details: </p>
+            @Html.Label(detail.FirstName) <br />
+            @Html.Label(detail.LastName) <br />
+            @Html.Label(detail.Age.ToString()) <br />
+            @Html.Label(detail.Major)
+        </div>
+        }
+    </div>
+    <div>
+        @Html.LabelFor(m => m.GenderString)
+        @Html.TextBoxFor(m => m.GenderString)
+    </div>
+</body>
+</html>
