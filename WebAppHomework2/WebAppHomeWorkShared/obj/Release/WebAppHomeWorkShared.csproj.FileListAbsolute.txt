@@ -1,0 +1,6 @@
+C:\Users\np_ma\source\repos\CIS174\WebAppHomework\WebAppHomeWorkShared\bin\Release\WebAppHomeWorkShared.dll
+C:\Users\np_ma\source\repos\CIS174\WebAppHomework\WebAppHomeWorkShared\bin\Release\WebAppHomeWorkShared.pdb
+C:\Users\np_ma\source\repos\CIS174\WebAppHomework\WebAppHomeWorkShared\obj\Release\WebAppHomeWorkShared.csprojAssemblyReference.cache
+C:\Users\np_ma\source\repos\CIS174\WebAppHomework\WebAppHomeWorkShared\obj\Release\WebAppHomeWorkShared.csproj.CoreCompileInputs.cache
+C:\Users\np_ma\source\repos\CIS174\WebAppHomework\WebAppHomeWorkShared\obj\Release\WebAppHomeWorkShared.dll
+C:\Users\np_ma\source\repos\CIS174\WebAppHomework\WebAppHomeWorkShared\obj\Release\WebAppHomeWorkShared.pdb
