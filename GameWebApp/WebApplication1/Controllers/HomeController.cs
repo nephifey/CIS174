@@ -14,5 +14,19 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+
+        public ActionResult About()
+        {
+            ViewBag.Title = "About Us";
+
+            return View();
+        }
+
+        public ActionResult Game()
+        {
+            ViewBag.Title = "Games";
+
+            return View();
+        }
     }
 }

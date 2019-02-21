@@ -1,4 +1,5 @@
 ﻿using GameWebApp.Domain;
+using GameWebApp.Shared.Orchestrators.Interfaces;
 using GameWebApp.Shared.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GameWebApp.Shared.Orchestrators
 {
-    public class PersonOrchestrator
+    public class PersonOrchestrator : IPersonOrchestrator
     {
         private readonly PersonContext _personContext;
 
@@ -27,6 +28,26 @@ namespace GameWebApp.Shared.Orchestrators
             }).ToList();
 
             return people;
+        }
+
+        public async Task<bool> UpdateUser(PersonViewModel user)
+        {
+            System.Diagnostics.Debug.WriteLine(user.PersonId);
+
+            var updateEntity = await _personContext.People.FindAsync(user.PersonId);
+
+            if(updateEntity == null)
+            {
+                return false;
+            }
+
+            updateEntity.FirstName = user.FirstName;
+            updateEntity.LastName = user.LastName;
+            updateEntity.Email = user.Email;
+
+            await _personContext.SaveChangesAsync();
+
+            return true;
         }
     }
 }

@@ -228,18 +228,26 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\AboutMeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902140456034_InitialCreate.cs" />
+    <Compile Include="Migrations\201902140456034_InitialCreate.Designer.cs">
+      <DependentUpon>201902140456034_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902202156448_AdditionalProperties.cs" />
+    <Compile Include="Migrations\201902202156448_AdditionalProperties.Designer.cs">
+      <DependentUpon>201902202156448_AdditionalProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UpdateUserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -276,6 +284,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\Custom\updateuser.js" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -296,8 +305,9 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
-    <Content Include="Views\Game\Index.cshtml" />
-    <Content Include="Views\AboutMe\Index.cshtml" />
+    <Content Include="Views\Home\Game.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Manage\Update.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -371,10 +381,22 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GameWebApp.Domain\GameWebApp.Domain.csproj">
+      <Project>{A0B672F2-9FFA-452D-A4A5-9B4D40000372}</Project>
+      <Name>GameWebApp.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GameWebApp.Shared\GameWebApp.Shared.csproj">
       <Project>{f39f7eec-6bb7-4eba-a667-85552a4ff289}</Project>
       <Name>GameWebApp.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201902140456034_InitialCreate.resx">
+      <DependentUpon>201902140456034_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902202156448_AdditionalProperties.resx">
+      <DependentUpon>201902202156448_AdditionalProperties.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -3,7 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using GameWebApp.Shared.Orchestrators;
+using GameWebApp.Shared.Orchestrators.Interfaces;
+using GameWebApp.Shared.ViewModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication1.Models;
@@ -320,6 +324,51 @@ namespace WebApplication1.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+        //
+        // GET: /Manage/Update or /profile
+        public ActionResult Update()
+        {
+            //keeps non signed in users out of page
+            var user = User.Identity.GetUserId();
+            if (user == null)
+                return RedirectToAction("Index");
+
+            var session = Session["userDetails"];
+            System.Diagnostics.Debug.Write("This is the debug: " + session);
+            return View();
+        }
+
+        //
+        // POST: /Manage/UpdateUser JsonResult
+        public async Task<JsonResult> UpdateUser(UpdateUserModel user)
+        {
+            using (var context = new ApplicationDbContext())
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+
+                var id = User.Identity.GetUserId();
+
+                if (id == String.Empty)
+                    return Json(false, JsonRequestBehavior.AllowGet);
+
+                ApplicationUser theUser = new ApplicationUser();
+
+                theUser = manager.FindById(id);
+
+                theUser.FirstName = user.FirstName;
+                theUser.LastName = user.LastName;
+                theUser.Email = user.Email;
+                theUser.Gender = user.Gender;
+                theUser.PhoneNumber = user.PhoneNumber;
+
+                await manager.UpdateAsync(theUser);
+                await context.SaveChangesAsync();
+
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
         }
 
         protected override void Dispose(bool disposing)
